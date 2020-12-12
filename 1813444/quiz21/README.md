@@ -1,4 +1,4 @@
-# ** These information are the basic steps on how to create an Ansible Configuration, Inventory, and Ad-hoc command**
+# **These information are the basic steps on how to create an Ansible Configuration, Inventory, and Ad-hoc command**
 
 ## How to create an Ansible Configuration (ansible.cfg) 
 **1st step:** To be able to create a file configuration, ansible must installed first using the command _apk add ansible_**.
