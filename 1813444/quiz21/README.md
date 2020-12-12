@@ -17,7 +17,7 @@
 ## How to create an Ad-hoc Ansible Command with setup and shell module
 **1st step:** Ping the remote host by using the **ansible -m ping [hostname]** command.
 **2nd step:** Then use the **[hostname] -m setup [filename] command to setup the hostname.
-**2nd step:** To display the content of the previously setup file, use **ansible [hostname] -m shell -a** command.
+**3rd step:** To display the content of the previously setup file, use **ansible [hostname] -m shell -a** command.
 
 
 
