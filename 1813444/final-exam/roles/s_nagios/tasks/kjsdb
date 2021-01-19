@@ -1,0 +1,52 @@
+- name: compilation of nagios core
+  make:
+      chdir: /downloads/nagios-4.2.1
+          target: all
+
+    - name: installation of binaries
+      make:
+          chdir: /downloads/nagios-4.2.1
+	      target: install
+
+	      - name: installation of init
+	        make:
+		    chdir: /downloads/nagios-4.2.1
+		        target: install-init
+
+			- name: installation of config files
+			  make:
+			      chdir: /downloads/nagios-4.2.1
+			          target: install-config
+
+				  - name: installation of permission
+				    make:
+				        chdir: /downloads/nagios-4.2.1
+					    target: install-commandmode
+
+					    - name: webconf
+					      make:
+					          chdir: /downloads/nagios-4.2.1
+						      target: install-webconf
+
+						      - name: installation of pip
+						        zypper:
+							    name: python3-pip
+							        state: latest
+
+								- name: installation of passlib
+								  pip:
+								      name: passlib
+								          state: latest
+									   - name: nagios account
+									     htpasswd:
+									         path: /usr/local/nagios/etc/htpasswd.users
+										     name: nagiosadmin
+										         password: '{{ nagadmin_pass }}'
+
+											 - name: restarting apache service
+											   service:
+											       name: apache2
+											           state: reloaded
+
+												   - name: enabling nagios service
+												       shell: '/etc/init.d/nagios start'        
